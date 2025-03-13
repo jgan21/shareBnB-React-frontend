@@ -1,5 +1,5 @@
 import PropertyCard from "./PropertyCard";
-import SearchForm from "./SearchForm";
+import SearchForm from "./common/SearchForm";
 
 /** Display all properties.
  *
@@ -7,7 +7,7 @@ import SearchForm from "./SearchForm";
  * - properties
  * [{ id, name, address, backyard, pool, description, price, user_id }, ...]
  * - search: function to call in parent
- * 
+ *
  * State:
  * - none.
  *

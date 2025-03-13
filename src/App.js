@@ -1,5 +1,5 @@
 import './App.css';
-import ShareBnB from './api';
+import ShareBnB from './api/api';
 import useLocalStorage from './hooks/useLocalStorage';
 import { useState, useEffect } from "react";
 import { BrowserRouter } from 'react-router-dom';
