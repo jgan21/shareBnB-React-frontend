@@ -11,7 +11,7 @@
     <img src="public/shareBnB.gif" alt="Demo recording">
     <br />
     <br />
-    <a href="https://sharebnb-jia.onrender.com/" target="_blank">View Demo</a>
+    <a href="https://www.sharebnb.jiaronggan.com/" target="_blank">View Demo</a>
     <br />
     <a href="https://github.com/jgan21/shareBnB-flask-backend" target="_blank">ShareBnB Backend Repo</a>
   </p>
@@ -139,7 +139,7 @@ Project Link (Frontend): [https://github.com/jgan21/react-jobly](https://github.
 
 Project Link (Backend): [https://github.com/jgan21/jobly-backend](https://github.com/jgan21/shareBnB-flask-backend)
 
-Live Demo: [https://sharebnb-jia.onrender.com/](https://sharebnb-jia.onrender.com/)
+Live Demo: [https://www.sharebnb.jiaronggan.com/](https://www.sharebnb.jiaronggan.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
