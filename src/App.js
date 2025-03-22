@@ -1,12 +1,12 @@
 import './App.css';
 import ShareBnB from './api/api';
 import useLocalStorage from './hooks/useLocalStorage';
+import UserContext from './auth/UserContext';
+import RoutesList from './routes-nav/RoutesList';
+import Navbar from './routes-nav/Navbar';
 import { useState, useEffect } from "react";
 import { BrowserRouter } from 'react-router-dom';
 import {jwtDecode as decode} from "jwt-decode";
-
-import RoutesList from './RoutesList';
-import Navbar from './Navbar';
 
 export const TOKEN_STORAGE_ID = "sharebnb-token"
 /** App for ShareBnB.
@@ -22,25 +22,17 @@ export const TOKEN_STORAGE_ID = "sharebnb-token"
 */
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [properties, setProperties] = useState([]);
+  // const [properties, setProperties] = useState([]);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID)
   const [currentUser, setCurrentUser] = useState({
     data: null,
     infoLoaded: false
   });
 
-  /** getPropertiesOnMount: Executes search without a search term. */
-
-  useEffect(function getPropertiesOnMount() {
-    console.log('useEffect getPropertiesOnMount');
-    search();
-  }, []);
-
   /** Get user data if token exists. */
   useEffect(
     function loadUserInfo() {
-      console.debug("App useEffect loadUserInfo", "token=", token);
+      // console.debug("App useEffect loadUserInfo", "token=", token);
 
       async function getCurrentUser() {
         if (token) {
@@ -87,39 +79,38 @@ function App() {
     setToken(token)
   }
 
-
-  /** addProperty: Makes a request to API to add a new property. Recieves
-   * form data and file upload from form.
+  /** Handles site-wite signup.
+   *
+   * Automatically logs them in (set token) upon signup.
+   *
+   * await this function to see if any error happens.
    */
 
-  async function addProperty(formData, file){
-    const resp = await ShareBnB.addProperty(formData, file);
-    setProperties(p => ([...p, resp.property]))
+  async function signup(signupData) {
+    let token = await ShareBnB.signup(signupData);
+    setToken(token);
   }
 
-  /** search: Makes a request to API for properties that matches search term.*/
-
-  async function search(term){
-    console.log("App search term=", term)
-    const { properties } = await ShareBnB.getProperties(term);
-    console.log("search properties", properties)
-    setProperties(properties);
-    setIsLoading(false);
-  }
-
-  if (isLoading === true) return <p>Loading...</p>;
+  if (!currentUser.infoLoaded) return <p>Loading...</p>;
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Navbar search={search} />
-        <RoutesList
-            properties={properties}
-            addProperty={addProperty}
-            search={search}
-        />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider
+        value={{
+          currentUser: currentUser.data,
+          setCurrentUser,
+        }}
+        >
+        <div className="App">
+            <Navbar logout={logout} />
+            <RoutesList
+              currentUser={currentUser.data}
+              login={login}
+              signup={signup}
+            />
+        </div>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 
