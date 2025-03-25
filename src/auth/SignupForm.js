@@ -32,7 +32,7 @@ function SignupForm({ signup }) {
     evt.preventDefault();
     try {
       await signup(formData);
-      navigate("/")
+      navigate("/properties")
     } catch (err) {
       setFormErrors(err);
     }
