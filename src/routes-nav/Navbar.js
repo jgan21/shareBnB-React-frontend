@@ -20,6 +20,11 @@ function Navbar({ logout }) {
           </NavLink>
         </li>
         <li className="nav-item me-4">
+          <NavLink className="nav-link" to="/add-property">
+          Add Property
+          </NavLink>
+        </li>
+        <li className="nav-item me-4">
           <Link className="nav-link" to="/" onClick={logout}>
             Log out {currentUser.firstName}
           </Link>
