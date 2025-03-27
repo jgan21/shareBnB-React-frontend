@@ -19,7 +19,7 @@ import AddPropertyForm from '../properties/AddPropertyForm';
  * App -> RoutesList -> { Homepage, PropertiesPage, AddPropertyForm }
 */
 
-function RoutesList({ login, signup, currentUser }) {
+function RoutesList({ login, signup, currentUser, addProperty }) {
   return (
     <div className="container pt-5">
       <Routes>
@@ -35,7 +35,9 @@ function RoutesList({ login, signup, currentUser }) {
         {currentUser &&
           <>
             <Route path="/properties" element={<PropertiesPage />} />
-            <Route path="/add-property" element={<AddPropertyForm />} />
+            <Route path="/add-property" element={
+              <AddPropertyForm addProperty={addProperty} />
+            } />
           </>
         }
         <Route path="*" element={<Navigate to="/" />} />

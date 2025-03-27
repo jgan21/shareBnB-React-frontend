@@ -9,14 +9,16 @@ import { BrowserRouter } from 'react-router-dom';
 import {jwtDecode as decode} from "jwt-decode";
 
 export const TOKEN_STORAGE_ID = "sharebnb-token"
+
+
 /** App for ShareBnB.
  *
  * Props:
  * - none
  *
  * State:
- * - isLoading
- * - properties
+ * - token
+ * - currentUser
  *
  * App -> { Navbar, RoutesList }
 */
@@ -80,15 +82,22 @@ function App() {
   }
 
   /** Handles site-wite signup.
-   *
    * Automatically logs them in (set token) upon signup.
-   *
    * await this function to see if any error happens.
    */
 
   async function signup(signupData) {
     let token = await ShareBnB.signup(signupData);
     setToken(token);
+  }
+
+  async function addProperty(propertyData, file) {
+    try {
+      let newProperty = await ShareBnB.addProperty(propertyData, file);
+      console.log("Property added:", newProperty)
+    } catch (err) {
+      console.error("Error adding property:", err);
+    }
   }
 
   if (!currentUser.infoLoaded) return <p>Loading...</p>;
@@ -107,6 +116,7 @@ function App() {
               currentUser={currentUser.data}
               login={login}
               signup={signup}
+              addProperty={addProperty}
             />
         </div>
       </UserContext.Provider>
