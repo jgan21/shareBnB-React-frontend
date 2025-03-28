@@ -8,7 +8,7 @@
     <br />
     <br />
     <!-- To start a screen record on Mac: Shift + Cmd + 5 -->
-    <img src="public/shareBnB.gif" alt="Demo recording">
+    <img src="public/sharebnb-demo.gif" alt="Demo recording">
     <br />
     <br />
     <a href="https://www.sharebnb.jiaronggan.com/" target="_blank">View Demo</a>

@@ -53,7 +53,7 @@ function AddPropertyForm({ addProperty }) {
     await addProperty(formData, file);
     setFormData(INITIAL_FORM_DATA);
     setFile(null);
-    navigate("/");
+    navigate("/properties");
 
     // TODO: handle any errors thrown
   }
