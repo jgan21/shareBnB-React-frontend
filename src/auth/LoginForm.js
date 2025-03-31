@@ -58,7 +58,6 @@ function LoginForm({ login, setShowLogin }) {
                 className="form-control"
                 value={formData.username}
                 onChange={handleChange}
-                autoComplete="username"
                 required
               />
             </div>
@@ -70,7 +69,6 @@ function LoginForm({ login, setShowLogin }) {
                 className="form-control"
                 value={formData.password}
                 onChange={handleChange}
-                autoComplete="current-password"
                 required
               />
             </div>
